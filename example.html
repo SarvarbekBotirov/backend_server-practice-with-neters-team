@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+        var getSamsungStock = function(){
+            $.ajax({
+              url: 'http://127.0.0.1:8000/getRatio/005930',
+              success: function (data) {
+                  console.log(data)
+                window.alert(data)
+              },
+
+            })
+        };
+        var getKakaoStock = function(){
+            $.ajax({
+              url: 'http://127.0.0.1:8000/getRatio/035720',
+              success: function (data) {
+                  console.log(data)
+                window.alert(data)
+              },
+
+            })
+        };
+        var whenopen = function(){
+            var samsungbtn = document.getElementById("samsung");
+            samsungbtn.style.color = "red";
+            samsungbtn.addEventListener("click",getSamsungStock);
+
+            var kakaobtn = document.getElementById("kakao");
+            kakaobtn.style.color = "red";
+            kakaobtn.addEventListener("click",getKakaoStock);
+
+        };
+        window.onload = whenopen;
+
+</script>
+<body>
+    <button id="samsung">삼성전자 주가 확인</button>
+    <button id="kakao">카카오 주가 확인</button>
+</body>
+</html>

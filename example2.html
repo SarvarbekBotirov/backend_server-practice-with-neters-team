@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+        var getStock = function(){
+            var companyName = document.getElementById('area')
+            console.log(companyName.value)
+            $.ajax({
+              url: 'http://127.0.0.1:8000/getStockPriceFromName/'+companyName.value,
+              success: function (data) {
+                  console.log(data)
+                  var curdiv = document.getElementById("res")
+                  for(i in data){
+                      var tmp = document.createElement("p")
+                      tmp.innerHTML = data[i]
+                      curdiv.append(tmp)
+                  }
+              },
+
+            })
+        };
+
+        window.onload = function(){
+            document.getElementById('btn').addEventListener('click',getStock)
+        };
+
+</script>
+<body>
+    <button id="btn">주가 확인</button>
+    <textarea id = "area"></textarea>
+    <div id = 'res'></div>
+</body>
+</html>
